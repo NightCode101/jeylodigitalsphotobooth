@@ -50,10 +50,17 @@ function drawCollage() {
     background.onerror = () => console.error("Failed to load background image.");
 }
 
+const logoMappings = {
+    "img/design_color/black.jpg": "img/logo1.png",
+};
+
 // Function to draw the logo
 function drawLogo() {
     const logo = new Image();
-    logo.src = "img/logo.png";
+    
+    // Check if selected frame has a specific logo
+    const customLogo = logoMappings[selectedFrameColor] || "img/logo.png";  
+    logo.src = customLogo;
 
     logo.onload = () => {
         const logoWidth = 500;
@@ -65,12 +72,11 @@ function drawLogo() {
 
     logo.onerror = () => console.error("Failed to load logo image.");
 }
-
 // Change frame color and redraw instantly
 colorButtons.forEach(button => {
     button.addEventListener("click", (event) => {
         selectedFrameColor = event.target.getAttribute("data-color");
-        drawCollage();
+        drawCollage(); // This will also call drawLogo()
     });
 });
 
