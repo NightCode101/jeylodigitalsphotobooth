@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeylo Digitals Photo Booth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/2c/5b/ab/2c5bab6723ef8f80152bb4aaa4920fef.jpg">
+
+</head>
+<body class="download">
+    <div>
+        <h1 class="logo2">
+            JEYLO DIGITALS DIGITAL PHOTO BOOTH</h1>
+    </div>
+
+    <div class="main-container">
+        <canvas id="finalCanvas"></canvas>
+
+        <div class="right">
+            <h2>Select your frame color!</h2>
+            
+            <div class="color-grid">
+                <button class="color-btn" data-color="img/design_color/blue.jpg" style="background-image: url('img/design_color/blue.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/near_moon.jpg" style="background-image: url('img/design_color/near_moon.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/purple.jpg" style="background-image: url('img/design_color/purple.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/matcha.jpg" style="background-image: url('img/design_color/matcha.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/red.jpg" style="background-image: url('img/design_color/red.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/nude.jpg" style="background-image: url('img/design_color/nude.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/crushed_berries.jpg" style="background-image: url('img/design_color/crushed_berries.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/gobi_beige.jpg" style="background-image: url('img/design_color/gobi_beige.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/golden_tianoi.jpg" style="background-image: url('img/design_color/golden_tianoi.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/halloween.jpg" style="background-image: url('img/design_color/halloween.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/lilac.jpg" style="background-image: url('img/design_color/lilac.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/red.jpg" style="background-image: url('img/design_color/red.jpg');"></button>
+                <button class="color-btn" data-color="img/design_color/tahitian_sand.jpg" style="background-image: url('img/design_color/tahitian_sand.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/baloon_heart.jpg" style="background-image: url('img/design_frame/baloon_heart.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/bear.jpg" style="background-image: url('img/design_frame/bear.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/cherry.jpg" style="background-image: url('img/design_frame/cherry.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/clouds1.jpg" style="background-image: url('img/design_frame/clouds1.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/clouds2.jpg" style="background-image: url('img/design_frame/clouds2.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/flower.jpg" style="background-image: url('img/design_frame/flower.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/sunflower.jpg" style="background-image: url('img/design_frame/sunflower.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/heart1.jpg" style="background-image: url('img/design_frame/heart1.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/heart2.jpg" style="background-image: url('img/design_frame/heart2.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/heart3.jpg" style="background-image: url('img/design_frame/heart3.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/kiss.jpg" style="background-image: url('img/design_frame/kiss.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/love1.jpg" style="background-image: url('img/design_frame/love1.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/love2.jpg" style="background-image: url('img/design_frame/love2.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/mushroom.jpg" style="background-image: url('img/design_frame/mushroom.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/nature1.jpg" style="background-image: url('img/design_frame/nature1.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/nature2.jpg" style="background-image: url('img/design_frame/nature2.jpg');"></button>
+                <button class="color-btn" data-color="img/design_frame/tech.jpg" style="background-image: url('img/design_frame/tech.jpg');"></button>
+            </div>
+            
+
+            <div class="button-last">
+                <a href="photobooth.html"><button>Retake</button></a>
+                <button id="download-btn">Download</button>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <h3 class="footer-text">
+            MADE WITH 💗 © 2025 BY JEYLO TANGARO
+        </h3>
+    </div>
+
+    <script src="download.js"></script>
+</body>
+</html>
