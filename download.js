@@ -57,9 +57,9 @@ function drawLogo() {
 
     logo.onload = () => {
         const logoWidth = 500;
-        const logoHeight = 200;
+        const logoHeight = 150;
         const logoX = (canvasWidth - logoWidth) / 2;
-        const logoY = finalCanvas.height - logoSpace + 130;
+        const logoY = finalCanvas.height - logoSpace + 150;
         ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
     };
 
