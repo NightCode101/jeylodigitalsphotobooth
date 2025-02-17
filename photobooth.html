@@ -18,12 +18,26 @@
         <h1 class="logo2">JEYLO DIGITALS ONLINE PHOTO BOOTH</h1>
     </div>
     
+    <<div>
+        <label for="countdown-select">Select Countdown Time:</label>
+        <select id="countdown-select">
+            <option value="3">3 seconds</option>
+            <option value="5" selected>5 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+        </select>
+    </div>
+    
+    <div>
+        <button id="start-capture-btn">Start Capture</button>
+    </div>
+    
     <div class="camera-container">
         <div id="countdown">Taking photo in...</div>
         <video id="video" autoplay></video>
         <div id="counter">0/4</div>
     </div>
-    
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6600375635602117"
      crossorigin="anonymous"></script>
 <!-- DIS.ADS -->

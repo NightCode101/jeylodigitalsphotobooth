@@ -1,6 +1,8 @@
 const video = document.getElementById("video");
 const countdownEl = document.getElementById("countdown");
 const counterEl = document.getElementById("counter");
+const startCaptureBtn = document.getElementById("start-capture-btn");
+
 const shutterOverlay = document.createElement("div");
 shutterOverlay.style.position = "absolute";
 shutterOverlay.style.top = "0";
@@ -38,14 +40,13 @@ navigator.mediaDevices.getUserMedia(videoConstraints)
     .then(stream => {
         video.srcObject = stream;
         video.play();
-        startCaptureProcess();
     })
     .catch(err => console.error("Camera access denied", err));
 
-// Start auto capture process
-function startCaptureProcess() {
+// Event listener for Start Capture Button
+startCaptureBtn.addEventListener("click", () => {
     capturePhotoWithCountdown();
-}
+});
 
 // Countdown and capture photo
 function capturePhotoWithCountdown() {
@@ -54,10 +55,13 @@ function capturePhotoWithCountdown() {
         return;
     }
 
-    let timeLeft = 5;
+    const countdownSelect = document.getElementById("countdown-select");
+    let timeLeft = parseInt(countdownSelect.value); // Get user-selected time
+
     countdownEl.textContent = timeLeft;
     counterEl.textContent = `${capturedCount}/4`;
     countdownSound.play();
+
     const countdownInterval = setInterval(() => {
         timeLeft--;
         countdownEl.textContent = timeLeft;
@@ -67,7 +71,7 @@ function capturePhotoWithCountdown() {
             triggerShutterAnimation();
         }
 
-        if (timeLeft <= 1) {
+        if (timeLeft <= 0) {
             clearInterval(countdownInterval);
             capturePhoto();
         }
