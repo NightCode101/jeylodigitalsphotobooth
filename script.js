@@ -2,6 +2,13 @@ const video = document.getElementById("video");
 const countdownEl = document.getElementById("countdown");
 const counterEl = document.getElementById("counter");
 const startCaptureBtn = document.getElementById("start-capture-btn");
+if (startCaptureBtn) {
+    startCaptureBtn.addEventListener("click", () => {
+        capturePhotoWithCountdown();
+    });
+} else {
+    console.error("Start Capture button not found!");
+}
 
 const shutterOverlay = document.createElement("div");
 shutterOverlay.style.position = "absolute";
@@ -113,3 +120,18 @@ function redirectToDownload() {
     sessionStorage.setItem("capturedPhotos", JSON.stringify(capturedPhotos));
     window.location.href = "download.html";
 }
+
+// Fix Touch Overaly
+
+shutterOverlay.style.position = "absolute";
+shutterOverlay.style.top = "0";
+shutterOverlay.style.left = "0";
+shutterOverlay.style.width = "100%";
+shutterOverlay.style.height = "100%";
+shutterOverlay.style.background = "white";
+shutterOverlay.style.opacity = "0";
+shutterOverlay.style.transition = "opacity 0.2s ease-out";
+document.body.appendChild(shutterOverlay);
+
+shutterOverlay.style.pointerEvents = "none"; // Allows clicking through
+

@@ -141,6 +141,13 @@ button:hover{
     padding: 20px;
 }
 
+#start-capture-btn {
+    position: relative;
+    pointer-events: auto !important; /* Override hidden overlays */
+    z-index: 10000; /* Make sure it's above overlays */
+    cursor: pointer; /* Ensure it's clickable */
+}
+
 .camera-container {
     display: flex;
     flex-direction: column;
