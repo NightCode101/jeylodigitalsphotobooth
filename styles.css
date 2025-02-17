@@ -18,7 +18,7 @@ html, body {
     top: 10px;  /* Move to the top */
     left: 50%;  /* Center horizontally */
     transform: translateX(-50%);  /* Perfect centering */
-    font-size: 50px;  /* Adjust size if needed */
+    font-size: 30px;  /* Adjust size if needed */
     font-weight: bold;
     color: #a07a65; /* Customize text color */
     text-align: center;
