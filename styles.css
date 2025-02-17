@@ -12,13 +12,18 @@ html, body {
     padding: 0;
 }
 
-
 .logo1 {
-    color: #a07a65;
-    margin-top: 10vh; 
+    position: absolute;  /* Make it float above everything */
     font-family: 'Koulen', sans-serif;
-    font-size: 4vw; 
-    text-align: center; 
+    top: 10px;  /* Move to the top */
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);  /* Perfect centering */
+    font-size: 50px;  /* Adjust size if needed */
+    font-weight: bold;
+    color: #a07a65; /* Customize text color */
+    text-align: center;
+    z-index: 1000;  /* Ensure it stays on top */  
+    padding: 10px 20px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -147,6 +152,7 @@ button:hover{
     z-index: 10000; /* Make sure it's above overlays */
     cursor: pointer; /* Ensure it's clickable */
 }
+
 
 .camera-container {
     display: flex;
