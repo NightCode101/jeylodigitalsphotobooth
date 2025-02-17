@@ -2,12 +2,14 @@ const video = document.getElementById("video");
 const countdownEl = document.getElementById("countdown");
 const counterEl = document.getElementById("counter");
 const startCaptureBtn = document.getElementById("start-capture-btn");
-if (startCaptureBtn) {
-    startCaptureBtn.addEventListener("click", () => {
-        capturePhotoWithCountdown();
-    });
-} else {
-    console.error("Start Capture button not found!");
+function stopCapture() {
+    clearInterval(countdownInterval); // Stop countdown timer
+    countdownSound.pause();  // Stop the sound
+    countdownSound.currentTime = 0; // Reset sound position
+
+    isCapturing = false;
+    startCaptureBtn.disabled = false;
+    stopCaptureBtn.disabled = true;
 }
 
 const shutterOverlay = document.createElement("div");
@@ -19,6 +21,7 @@ shutterOverlay.style.height = "100%";
 shutterOverlay.style.background = "white";
 shutterOverlay.style.opacity = "0";
 shutterOverlay.style.transition = "opacity 0.2s ease-out";
+shutterOverlay.style.pointerEvents = "none";
 document.body.appendChild(shutterOverlay);
 
 const shutterSound = new Audio("shutter.mp3");
@@ -26,6 +29,9 @@ const countdownSound = new Audio("countdown.mp3");
 
 const capturedPhotos = [];
 let capturedCount = 0;
+let countdownInterval;
+let isCapturing = false; // Track if capturing is in progress
+let timeLeft = 0; // Store remaining countdown time when stopped
 
 // Adjust constraints for mobile
 const isMobile = window.innerWidth <= 600;
@@ -50,9 +56,21 @@ navigator.mediaDevices.getUserMedia(videoConstraints)
     })
     .catch(err => console.error("Camera access denied", err));
 
-// Event listener for Start Capture Button
+// Start Capture Button Click Event
 startCaptureBtn.addEventListener("click", () => {
-    capturePhotoWithCountdown();
+    if (!isCapturing) {
+        capturePhotoWithCountdown();
+    } else {
+        resumeCapture();
+    }
+    isCapturing = true;
+    startCaptureBtn.disabled = true;
+    stopCaptureBtn.disabled = false;
+});
+
+// Stop Capture Button Click Event
+stopCaptureBtn.addEventListener("click", () => {
+    stopCapture();
 });
 
 // Countdown and capture photo
@@ -63,26 +81,56 @@ function capturePhotoWithCountdown() {
     }
 
     const countdownSelect = document.getElementById("countdown-select");
-    let timeLeft = parseInt(countdownSelect.value); // Get user-selected time
+    timeLeft = parseInt(countdownSelect.value); // Get user-selected time
 
     countdownEl.textContent = timeLeft;
     counterEl.textContent = `${capturedCount}/4`;
     countdownSound.play();
 
-    const countdownInterval = setInterval(() => {
-        timeLeft--;
-        countdownEl.textContent = timeLeft;
-        countdownSound.play();
-
-        if (timeLeft === 1) {
-            triggerShutterAnimation();
-        }
-
+    countdownInterval = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(countdownInterval);
             capturePhoto();
+        } else {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            countdownSound.play();
+
+            if (timeLeft === 1) {
+                triggerShutterAnimation();
+            }
         }
     }, 1000);
+}
+
+// Stop the Capture Process (Pause)
+function stopCapture() {
+    clearInterval(countdownInterval); // Stop countdown
+    isCapturing = false;
+    startCaptureBtn.disabled = false;
+    stopCaptureBtn.disabled = true;
+}
+
+// Resume Capture from where it stopped
+function resumeCapture() {
+    countdownEl.textContent = timeLeft;
+    countdownInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            capturePhoto();
+        } else {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            countdownSound.play();
+
+            if (timeLeft === 1) {
+                triggerShutterAnimation();
+            }
+        }
+    }, 1000);
+
+    startCaptureBtn.disabled = true;
+    stopCaptureBtn.disabled = false;
 }
 
 // Capture photo
@@ -102,8 +150,13 @@ function capturePhoto() {
     capturedCount++;
     counterEl.textContent = `${capturedCount}/4`;
 
-    // Continue to next photo
-    setTimeout(capturePhotoWithCountdown, 1000);
+    // Stop capturing if we reach 4 photos
+    if (capturedCount >= 4) {
+        redirectToDownload();
+    } else {
+        // Continue to next photo
+        capturePhotoWithCountdown();
+    }
 }
 
 // Shutter animation
@@ -120,18 +173,3 @@ function redirectToDownload() {
     sessionStorage.setItem("capturedPhotos", JSON.stringify(capturedPhotos));
     window.location.href = "download.html";
 }
-
-// Fix Touch Overaly
-
-shutterOverlay.style.position = "absolute";
-shutterOverlay.style.top = "0";
-shutterOverlay.style.left = "0";
-shutterOverlay.style.width = "100%";
-shutterOverlay.style.height = "100%";
-shutterOverlay.style.background = "white";
-shutterOverlay.style.opacity = "0";
-shutterOverlay.style.transition = "opacity 0.2s ease-out";
-document.body.appendChild(shutterOverlay);
-
-shutterOverlay.style.pointerEvents = "none"; // Allows clicking through
-
