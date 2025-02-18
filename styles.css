@@ -40,8 +40,8 @@ html, body {
 /* Very small screens (mobile) */
 @media (max-width: 480px) {
     .logo1 {
-        font-size: 6vw; 
-        padding: 3vw;
+        font-size: 5vw; 
+        padding: 2vw;
     }
 }
 
