@@ -13,19 +13,38 @@ html, body {
 }
 
 .logo1 {
-    position: absolute;  /* Make it float above everything */
     font-family: 'Koulen', sans-serif;
-    top: 10px;  /* Move to the top */
+    position: absolute;  /* Keep it at the top */
+    top: 10px;  /* Space from the top */
     left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);  /* Perfect centering */
-    font-size: 30px;  /* Adjust size if needed */
+    transform: translateX(-50%);  /* Ensure perfect centering */
+    font-size: 4vw;  /* Responsive font size (adjusts with screen width) */
     font-weight: bold;
     color: #a07a65; /* Customize text color */
-    text-align: center;
-    z-index: 1000;  /* Ensure it stays on top */  
-    padding: 10px 20px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1000;  /* Ensure it's above other elements */
+    padding: 1vw 2vw; /* Responsive padding */
+    border-radius: 5px; /* Smooth corners */
+    width: max-content;
 }
+
+/* Smaller screens (tablets & mobile) */
+@media (max-width: 768px) {
+    .logo1 {
+        font-size: 5vw;  /* Increase font size on small screens */
+        padding: 2vw;  /* Increase padding for better touchability */
+    }
+}
+
+/* Very small screens (mobile) */
+@media (max-width: 480px) {
+    .logo1 {
+        font-size: 6vw;  /* Even larger text for small screens */
+        padding: 3vw;  /* More padding for readability */
+    }
+}
+
 
 .logo2 {
     color: #a07a65;
@@ -38,6 +57,8 @@ html, body {
     left: 10px;
     z-index: 1000; 
 }
+
+
 
 body {
     display: flex;
@@ -119,7 +140,7 @@ button:hover{
 }
 
 .footer-text {
-    font-size: 14px; /* Adjust text size */
+    font-size: 10px; /* Adjust text size */
     height: 30px; /* Set the height */
     line-height: 30px; /* Align text vertically */
     overflow: hidden; /* Prevent overflow */
@@ -339,7 +360,7 @@ body .download {
     }
 
     .footer-text {
-        font-size: 14px; /* Adjust text size */
+        font-size: 10px; /* Adjust text size */
         height: 30px; /* Set the height */
         line-height: 30px; /* Align text vertically */
         overflow: hidden; /* Prevent overflow */
@@ -436,7 +457,7 @@ body .download {
 
     .footer-text {
         margin: 0;
-        font-size: 14px; /* Adjust text size */
+        font-size: 10px; /* Adjust text size */
         height: 30px; /* Set the height */
         line-height: 30px; /* Align text vertically */
         overflow: hidden; /* Prevent overflow */
