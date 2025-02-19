@@ -168,12 +168,13 @@ button:hover{
 }
 
 #start-capture-btn {
+    align-self: center;
     position: relative;
     pointer-events: auto !important;
     z-index: 10000;
     cursor: pointer;
+    align-self: center;
 }
-
 
 .camera-container {
     display: flex;
@@ -226,6 +227,7 @@ video {
     outline: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    align-self: center;
 }
 
 /* Hover effect */
